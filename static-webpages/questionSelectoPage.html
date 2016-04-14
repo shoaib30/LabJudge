@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lab Judge</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-darkly-theme.min.css" rel="stylesheet" />
+       <script src="jquery-2.2.0.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+      <script>
+        $(document).ready(function()    {
+            var questionNumber = 5;
+            var totalQuestions = 8;
+            var numberOfLoops;
+            var speed;
+            var i=1;
+            var intervalID;
+            var setQuestion = function()    {
+                
+                $("#quesNo").html(i);
+                i++
+                if(i%(totalQuestions+1) == 0)   {
+                    i=1;
+                    numberOfLoops--
+                }
+                clearInterval(intervalID)
+                speed+=5
+                if(numberOfLoops !=0 || i != (questionNumber+1))    {
+                    intervalID = setInterval(setQuestion,speed)
+                }
+                else{
+//                    $("#quesBtn").innerHTML("Start");
+                    $("#quesBtn").attr("href","studentPage.html");
+                    //$("#quesBtn").removeClass("disabled")
+                    $("#btnSpace").html("<a class='btn btn-primary btn-lg' href='studentPage.html'>Start Exam</a>")
+                }
+                
+            }
+            $("#quesBtn").on("click",function()  {
+                    i = 1;
+                    speed = 10
+                    numberOfLoops = 5;
+                    $("#quesBtn").addClass("disabled")
+                    intervalID = setInterval(setQuestion,speed)
+                    
+            })
+        })
+      </script>
+  </head>
+
+  <body>
+      <div class="container">
+          <div class="jumbotron">
+	           <div class="container text-center">
+                    <a href="mainPage.html"><h1>Lab Judge</h1></a>
+                    <p>Page Name</p>
+	           </div>
+        </div>
+          <div class="jumbotron">
+	<div class="container text-center">
+        <h1><div id="quesNo"></div></h1>
+        <div id="btnSpace"><a class="btn btn-primary btn-lg"id="quesBtn">Get Question</a></div>
+        <p>
+            
+<!--            <button type="button" class="btn btn-primary btn-lg"  id="quesBtn">Get Question</button>-->
+		</p>
+	</div>
+</div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   
+
+
+  </body>
+</html>
