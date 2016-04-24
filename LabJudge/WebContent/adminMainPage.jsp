@@ -24,8 +24,10 @@
 		}
 		else {
 			//System.out.println("no cookie found");
+			response.sendRedirect("index.html");
 		}
-	}
+	}else
+		response.sendRedirect("index.html");
 %>
 <!DOCTYPE html>
 <html lang="en">
