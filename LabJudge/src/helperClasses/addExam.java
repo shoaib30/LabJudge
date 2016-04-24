@@ -1,6 +1,11 @@
 package helperClasses;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,12 +18,30 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/addExam")
 public class addExam extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+	static final String DB_URL = "jdbc:mysql://localhost:3306/lab_judge";
+
+	   //  Database credentials
+	static final String USER = "root";
+	static final String PASS = "3070";
+	Connection conn;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public addExam() {
         super();
+        try{
+		      //STEP 2: Register JDBC driver
+		      Class.forName(JDBC_DRIVER);
+		      //STEP 3: Open a connection
+		      conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		   }catch(SQLException se){
+		      //Handle errors for JDBC
+		      se.printStackTrace();
+		   }catch(Exception e){
+		      //Handle errors for Class.forName
+		      e.printStackTrace();
+		   }
         // TODO Auto-generated constructor stub
     }
 
@@ -27,7 +50,60 @@ public class addExam extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String labName = request.getParameter("lbname");
+		String labCode = request.getParameter("lbcode");
+		int drHours = Integer.parseInt(request.getParameter("durationHours"));
+		int drMins = Integer.parseInt(request.getParameter("durationMins"));
+		String teacherCode = request.getParameter("teacherCode");
+		int sem = Integer.parseInt(request.getParameter("semester"));
+		String sql="insert into lab(lab_name,lab_code,duration,teacher_user_name,semester) values (?,?,?,?,?)";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, labName);
+			ps.setString(2, labCode);
+			ps.setInt(3, (drHours*60*60 + drMins*60));
+			ps.setString(4, teacherCode);
+			ps.setInt(5, sem);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String usnPrepend = request.getParameter("stud-usn-start");
+		int usnStart = Integer.parseInt(usnPrepend.substring(8));
+		usnPrepend = usnPrepend.substring(0, 8);
+		int usnEnd = Integer.parseInt(request.getParameter("stud-usn-end"));
+		String allStudents = "";
+		for(int i=usnStart; i<usnEnd; i++)
+		{
+			allStudents+=usnPrepend;
+			if((i/100) ==0)
+			{
+				allStudents+="0";
+				if((i/10)==0)
+					allStudents+="0";
+				
+			}
+			allStudents+=i+",";
+		}
+		int singleStudents = Integer.parseInt(request.getParameter("singleStudents"));
+		for(int i=1;i<=singleStudents; i++)
+			allStudents+="1MS"+request.getParameter("student"+i)+",";
+		String sql2 = "insert into lab_student(lab_code,student_list) values (?,?)";
+		try {
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			ps2.setString(1, labCode);
+			ps2.setString(2, allStudents);
+			ps2.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 	/**
@@ -38,4 +114,8 @@ public class addExam extends HttpServlet {
 		doGet(request, response);
 	}
 
+}
+class question
+{
+	
 }
