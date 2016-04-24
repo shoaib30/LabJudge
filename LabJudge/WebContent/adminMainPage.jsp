@@ -60,7 +60,7 @@
 			<a class="btn btn-warning btn-sm" href="addNewTeacher.html">Add Teacher</a>
 		</p>
 		<p>
-			<a class="btn btn-danger btn-sm" href="/Logout">Logout</a>
+			<a class="btn btn-danger btn-sm" href="Logout">Logout</a>
 		</p>
 </div>
     </div>

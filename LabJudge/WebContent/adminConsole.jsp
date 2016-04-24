@@ -1,4 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
 
+<%
+	Cookie cookies[] = request.getCookies();
+	Cookie sessionCookie = null;
+	if( cookies != null ){
+		//System.out.println("Found Cookie");
+		for(Cookie cookie : cookies)	{
+			//System.out.println("CookieName:"+cookie.getName());
+			if(cookie.getName().equals("sessionId")){
+				sessionCookie = cookie;
+				break;
+			}
+		}
+		if(sessionCookie != null){
+			//System.out.println("Cookie:"+sessionCookie.getValue());
+	    	userAuthentication.setSessionId(sessionCookie.getValue());
+	    	String user = userAuthentication.getUser();
+	    	if(user.equals("admin")) {
+	    		response.sendRedirect("adminMainPage.jsp");
+	    	}
+		}
+		else {
+			//System.out.println("no cookie found");
+		}
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +59,7 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="jumbotron">
                     <div class="container">
-                        <form class="form-horizontal" action="AdminAuth" method="get">
+                        <form class="form-horizontal" action="Authentication" method="get">
                             <fieldset>
 
                                 <!-- Form Name -->
@@ -72,7 +100,7 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="jumbotron">
                     <div class="container">
-                        <form class="form-horizontal" action="teacherPage.html">
+                        <form class="form-horizontal" action="Authentication">
                             <fieldset>
 
                                 <!-- Form Name -->
@@ -82,7 +110,7 @@
                                     <div class="form-group">
                                   <label class="col-md-4 control-label" for="text_teacher_name">Teacher Name</label>  
                                   <div class="col-md-4">
-                                  <input id="text_teacher_name" name="text_admin_name" type="text" placeholder="Name" class="form-control input-md" required="">
+                                  <input id="text_teacher_name" name="username" type="text" placeholder="Name" class="form-control input-md" required="">
 
                                   </div>
                                 </div>
@@ -91,13 +119,14 @@
                                 <div class="form-group">
                                   <label class="col-md-4 control-label" for="pwd_teacher_pass">Password</label>
                                   <div class="col-md-4">
-                                    <input id="pwd_teacher_pass" name="pwd_teacher_pass" type="password" placeholder="password" class="form-control input-md" required="">
+                                    <input id="pwd_teacher_pass" name="pass" type="password" placeholder="password" class="form-control input-md" required="">
 
                                   </div>
                                 </div>
 
                                 <!-- Button -->
                                 <div class="form-group">
+                                <input type="hidden" name="status" value="2"/>
                                   <label class="col-md-4 control-label" for="btn_teacher_login"></label>
                                   <div class="col-md-4">
                                     <button id="btn_teacher_login" name="btn_teacher_login" class="btn btn-primary">Login</button>
