@@ -21,11 +21,22 @@
 	    	if(!user.equals("admin")) {
 	    		response.sendRedirect("index.html");
 	    	}
+<<<<<<< HEAD
+	    	
+		}
+		else {
+			//System.out.println("no cookie found");
+			response.sendRedirect("index.html");
+		}
+	}else
+		response.sendRedirect("index.html");
+=======
 		}
 		else {
 			//System.out.println("no cookie found");
 		}
 	}
+>>>>>>> c3136bc833c5667053325a5f4820684933d1ff6b
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +95,7 @@
         </table>
 	</div>
                <p>
-			<a class="btn btn-warning btn-sm" href="addNewTeacher.html">Add Teacher</a>
+			<a class="btn btn-warning btn-sm" href="adminAddTeacher.jsp">Add Teacher</a>
 		</p>
 		<p>
 			<a class="btn btn-danger btn-sm" href="Logout">Logout</a>
