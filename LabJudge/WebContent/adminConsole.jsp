@@ -21,6 +21,9 @@
 	    	if(user.equals("admin")) {
 	    		response.sendRedirect("adminMainPage.jsp");
 	    	}
+	    	else if(user.startsWith("TH")) {
+	    		response.sendRedirect("teacherMainPage.jsp");
+	    	}
 		}
 		else {
 			//System.out.println("no cookie found");
