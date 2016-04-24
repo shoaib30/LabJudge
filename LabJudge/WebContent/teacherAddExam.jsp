@@ -1,5 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
+<%
+	Cookie cookies[] = request.getCookies();
+	Cookie sessionCookie = null;
+	if( cookies != null ){
+		//System.out.println("Found Cookie");
+		for(Cookie cookie : cookies)	{
+			//System.out.println("CookieName:"+cookie.getName());
+			if(cookie.getName().equals("sessionId")){
+				sessionCookie = cookie;
+				break;
+			}
+		}
+		if(sessionCookie != null){
+			//System.out.println("Cookie:"+sessionCookie.getValue());
+	    	userAuthentication.setSessionId(sessionCookie.getValue());
+	    	String user = userAuthentication.getUser();
+	    	if(!user.startsWith("TH")) {
+	    		response.sendRedirect("index.html");
+	    	}
+	    	
+		}
+		else {
+			//System.out.println("no cookie found");
+			response.sendRedirect("index.html");
+		}
+	}else
+		response.sendRedirect("index.html");
+%>   
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,7 +81,7 @@
 <div class="container">
   <div class="jumbotron">
        <div class="container text-center">
-            <a href="mainPage.html"><h1>Lab Judge</h1></a>
+            <a href="/LabJudge"><h1>Lab Judge</h1></a>
             <p>New Lab</p>
        </div>
     </div>
@@ -83,6 +112,14 @@
               <span class="help-block">Enter the subject code for the lab</span>  
               </div>
             </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="semester">Semester</label>  
+              <div class="col-md-2">
+              <input id="semester" name="semester" type="number" placeholder="semester" class="form-control input-md" required="" min="1" max="8">
+              <span class="help-block">Enter the semester</span>  
+              </div>
+            </div>
             <!--Duration-->
            <div class="form-group">
               <label class="col-md-4 control-label" for="durationHours">Duration</label>
@@ -100,7 +137,7 @@
                 </div>
               </div>
             </div>
-
+			<input type="hidden" name="teacherCode" value="THIS001"/>
             
         </div>
     </div>
@@ -114,7 +151,7 @@
               <div class="col-md-3">
                 <div class="input-group">
                   <span class="input-group-addon">1MS</span>
-                  <input id="stud-usn-start" name="st-usn-start" class="form-control" placeholder="13IS101" type="text" required="">
+                  <input id="stud-usn-start" name="stud-usn-start" class="form-control" placeholder="13IS101" type="text" required="">
                 </div>
             <!--    <p class="help-block">Enter the Starting USN</p>-->
               </div>

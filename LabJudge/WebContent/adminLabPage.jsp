@@ -17,7 +17,7 @@
 			//System.out.println("Cookie:"+sessionCookie.getValue());
 	    	userAuthentication.setSessionId(sessionCookie.getValue());
 	    	String user = userAuthentication.getUser();
-	    	if(!user.startsWith("TH")) {
+	    	if(!user.equals("admin")) {
 	    		response.sendRedirect("index.html");
 	    	}
 	    	
@@ -28,7 +28,7 @@
 		}
 	}else
 		response.sendRedirect("index.html");
-%>    
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,6 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-darkly-theme.min.css" rel="stylesheet" />
-    <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -53,58 +52,52 @@
           <div class="jumbotron">
 	           <div class="container text-center">
                     <a href="/LabJudge"><h1>Lab Judge</h1></a>
-                    <p>Teachers Console</p>
 	           </div>
         </div>
-           <div class="jumbotron">
-	<div class="container">
-		<h2 class="text-center">Welcome Professor</h2>
-		<p>Lab Exams Hosted:</p>
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Lab</th>
-                <th>Semester</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody data-link="row" class="rowlink">
-              <tr class="success">
-                  <td><a href="#OS">Operating Systems</a></td>
-                <td>5</td>
-                <td>Completed</td>
-              </tr>
-              <tr class="danger">
-                <td><a href="#DS">Data Structure</a></td>
-                <td>3</td>
-                <td>Pending</td>
-              </tr>
-              <tr class="info">
-                <td><a href="#ADA">Design and Analysis of Algorithms</a></td>
-                <td>5</td>
-                <td>In Progress</td>
-              </tr>
-            </tbody>
-        </table>
-
-        
-		<p>
-			<a class="btn btn-warning btn-sm" href="teacherAddExam.jsp">Add new exam</a>
-		</p>
-		<p>
-			<a class="btn btn-danger btn-sm" href="Logout">Logout</a>
-		</p>
-	</div>
-</div>
+    <div class="jumbotron">
+        <div class="container">
+            <h2>Operating Systems Lab</h2>
+            <hr>
+            <table class="table">
+                <tr>
+                    <td><b>Lab Name:</b></td>
+                    <td>OS Lab</td>
+                </tr>
+                <tr>
+                    <td><b>Lab Code:</b></td>
+                    <td>IS402L</td>
+                </tr>
+                 <tr>
+                    <td><b>Teacher Incharge:</b></td>
+                    <td>Sandeep BL</td>
+                </tr>
+                 <tr>
+                    <td><b>Duration:</b></td>
+                    <td>03:00</td>
+                </tr>
+                 <tr>
+                    <td><b>Status:</b></td>
+                    <td>In Progress</td>
+                </tr>
+            </table>
+            
+            
+            <p>
+                <a class="btn btn-success">Start Exam</a>
+                <a class="btn btn-info">Stop Exam</a>
+                <a class="btn btn-danger">Delete Exam</a>
+            </p>
+        </div>  
     </div>
-     
+
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-2.2.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/jasny-bootstrap.min.js"></script>
+
 
   </body>
 </html>
