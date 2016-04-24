@@ -86,7 +86,7 @@
        </div>
     </div>
 <form class="form-horizontal">
-<fieldset>
+<!--<fieldset>  -->
     <div class="jumbotron">
         <div class="container">
 
@@ -205,7 +205,7 @@
    
 
 
-</fieldset>
+<!-- </fieldset> -->
 </form>
 </div>
 

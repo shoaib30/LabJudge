@@ -50,7 +50,7 @@
       <div class="container">
           <div class="jumbotron">
 	           <div class="container text-center">
-                    <a href="mainPage.html"><h1>Lab Judge</h1></a>
+                    <a href="/LabJudge"><h1>Lab Judge</h1></a>
                     <p>Add Teacher</p>
 	           </div>
         </div>

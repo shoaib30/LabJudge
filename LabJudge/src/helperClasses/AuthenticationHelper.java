@@ -103,7 +103,7 @@ public class AuthenticationHelper {
 			   String sql="select user_name from sessions where session_id = '"+session+"'";
 			   ResultSet rs;
 			   rs = s.executeQuery(sql);
-			   System.out.println("finding user");
+			   //System.out.println("finding user");
 			   while(rs.next())
 				   user = rs.getString("user_name");
 			} catch (SQLException e) {
@@ -127,5 +127,13 @@ public class AuthenticationHelper {
 			return false;
 		}
 		   
+	   }
+	   public void destroy(){
+		   try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	   }
 }
