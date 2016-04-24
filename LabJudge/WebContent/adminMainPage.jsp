@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ page language="java" import="java.sql.*" %>
+   
       <jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
     
 <%
@@ -67,7 +69,61 @@
               </tr>
             </thead>
             <tbody data-link="row" class="rowlink">
-              <tr class="success">
+            <%
+            	String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+     	   		String DB_URL = "jdbc:mysql://localhost:3306/lab_judge";
+     	   		String USER = "root";
+     	   		String PASS = "3070";
+     	   		Connection conn;
+			    try{
+     	   			Class.forName(JDBC_DRIVER);
+			    	conn = DriverManager.getConnection(DB_URL,USER,PASS);
+					Statement stmt = conn.createStatement();
+					String sql = "select * from lab";
+					ResultSet rs = stmt.executeQuery(sql);
+					while(rs.next())
+					{
+						int status = rs.getInt("status");
+			%>
+			 <tr class="<%switch(status) 
+				 {
+				 case 0: out.print("danger"); break;
+				 case 1: out.print("info"); break;
+				 case 2: out.print("success"); break;
+				 }
+				 
+				 %>">
+				 <td>
+				 	<a href="adminLabPage.jsp?<%=rs.getString("lab_code") %>">
+				 	<%=rs.getString("lab_name") %>
+					</a>
+				</td>
+				
+				<td>
+					<%=rs.getInt("semester") %>
+				</td>
+				<td>
+					<% switch(status)
+					{
+					case 0: out.print("Pending");break;
+					case 1: out.print("In progress");break;
+					case 2: out.print("Completed");break;
+					}
+					
+					%>
+				</td>
+			</tr>
+			<%
+					}
+			    }
+			    catch(SQLException e)
+			    {
+			    	
+			    }
+            
+            %>
+            
+              <!-- <tr class="success">
                   <td><a href="#OS">Operating Systems</a></td>
                 <td>5</td>
                 <td>Completed</td>
@@ -82,7 +138,8 @@
                 <td>5</td>
                 <td>In Progress</td>
               </tr>
-            </tbody>
+             -->
+             </tbody>
         </table>
 	</div>
                <p>
