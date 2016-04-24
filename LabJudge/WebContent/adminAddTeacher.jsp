@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-      <jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
-    
+    <jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
 <%
 	Cookie cookies[] = request.getCookies();
 	Cookie sessionCookie = null;
@@ -45,54 +44,66 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-darkly-theme.min.css" rel="stylesheet" />
-    <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body>
       <div class="container">
           <div class="jumbotron">
 	           <div class="container text-center">
-                    <a href="/LabJudge"><h1>Lab Judge</h1></a>
-                    <p>Admin Console</p>
+                    <a href="mainPage.html"><h1>Lab Judge</h1></a>
+                    <p>Add Teacher</p>
 	           </div>
         </div>
-           <div class="jumbotron">
+        <div class="jumbotron">
 	<div class="container">
-		<p>Lab Exams Hosted:</p>
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Lab</th>
-                <th>Semester</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody data-link="row" class="rowlink">
-              <tr class="success">
-                  <td><a href="#OS">Operating Systems</a></td>
-                <td>5</td>
-                <td>Completed</td>
-              </tr>
-              <tr class="danger">
-                <td><a href="#DS">Data Structure</a></td>
-                <td>3</td>
-                <td>Pending</td>
-              </tr>
-              <tr class="info">
-                <td><a href="#ADA">Design and Analysis of Algorithms</a></td>
-                <td>5</td>
-                <td>In Progress</td>
-              </tr>
-            </tbody>
-        </table>
+		<form class="form-horizontal" action="AddTeacher" method="get">
+			<fieldset>
+			
+			<!-- Form Name -->
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="teacherName">Teacher's Name</label>  
+			  <div class="col-md-4">
+			  <input id="teacherName" name="teacherName" type="text" placeholder="Name" class="form-control input-md" required="">
+			  <span class="help-block">Enter the name of the teacher</span>  
+			  </div>
+			</div>
+			
+			<!-- Prepended text-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="teacherUserName">Username</label>
+			  <div class="col-md-4">
+			    <div class="input-group">
+			      <span class="input-group-addon">TH</span>
+			      <input id="teacherUserName" name="teacherUserName" class="form-control" placeholder="username" type="text" required="">
+			    </div>
+			    <span class="help-block">Set the username</span>
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="teacherPass">Password</label>  
+			  <div class="col-md-4">
+			  <input id="teacherPass" name="teacherPass" type="text" placeholder="password" class="form-control input-md" required="">
+			  <span class="help-block">Set the password for the teacher</span>  
+			  </div>
+			</div>
+			
+			<!-- Button -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="submit"></label>
+			  <div class="col-md-4">
+			    <button id="submit" name="submit" class="btn btn-primary">Add Teacher</button>
+			  </div>
+			</div>
+			
+			</fieldset>
+		</form>
 	</div>
-               <p>
-			<a class="btn btn-warning btn-sm" href="adminAddTeacher.jsp">Add Teacher</a>
-		</p>
-		<p>
-			<a class="btn btn-danger btn-sm" href="Logout">Logout</a>
-		</p>
 </div>
+
     </div>
 
     <!-- Bootstrap core JavaScript
@@ -100,8 +111,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-2.2.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/jasny-bootstrap.min.js"></script>
+
 
   </body>
 </html>
-

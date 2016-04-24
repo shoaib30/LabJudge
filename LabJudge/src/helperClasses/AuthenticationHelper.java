@@ -58,6 +58,7 @@ public class AuthenticationHelper {
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while(rs.next())	{
+					//System.out.println("TName: "+rs.getString("user_name")+"  pass: "+rs.getString("password"));
 					if(rs.getString("user_name").equals(username))	{
 						if(rs.getString("password").equals(pass))	{
 							flag = true;

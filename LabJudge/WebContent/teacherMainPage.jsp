@@ -1,35 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-      <jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
-    
-<%
-	Cookie cookies[] = request.getCookies();
-	Cookie sessionCookie = null;
-	if( cookies != null ){
-		//System.out.println("Found Cookie");
-		for(Cookie cookie : cookies)	{
-			//System.out.println("CookieName:"+cookie.getName());
-			if(cookie.getName().equals("sessionId")){
-				sessionCookie = cookie;
-				break;
-			}
-		}
-		if(sessionCookie != null){
-			//System.out.println("Cookie:"+sessionCookie.getValue());
-	    	userAuthentication.setSessionId(sessionCookie.getValue());
-	    	String user = userAuthentication.getUser();
-	    	if(!user.equals("admin")) {
-	    		response.sendRedirect("index.html");
-	    	}
-	    	
-		}
-		else {
-			//System.out.println("no cookie found");
-			response.sendRedirect("index.html");
-		}
-	}else
-		response.sendRedirect("index.html");
-%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,11 +23,12 @@
           <div class="jumbotron">
 	           <div class="container text-center">
                     <a href="/LabJudge"><h1>Lab Judge</h1></a>
-                    <p>Admin Console</p>
+                    <p>Teachers Console</p>
 	           </div>
         </div>
            <div class="jumbotron">
 	<div class="container">
+		<h2 class="text-center">Welcome Professor</h2>
 		<p>Lab Exams Hosted:</p>
         <table class="table table-hover">
             <thead>
@@ -85,15 +56,18 @@
               </tr>
             </tbody>
         </table>
-	</div>
-               <p>
-			<a class="btn btn-warning btn-sm" href="adminAddTeacher.jsp">Add Teacher</a>
+
+        
+		<p>
+			<a class="btn btn-warning btn-sm" href="teacherAddExam.html">Add new exam</a>
 		</p>
 		<p>
 			<a class="btn btn-danger btn-sm" href="Logout">Logout</a>
 		</p>
+	</div>
 </div>
     </div>
+     
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -104,4 +78,3 @@
 
   </body>
 </html>
-

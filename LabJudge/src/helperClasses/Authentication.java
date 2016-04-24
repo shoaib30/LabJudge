@@ -44,12 +44,17 @@ public class Authentication extends HttpServlet {
 		String username = request.getParameter("username");
 		String pass = request.getParameter("pass");
 		int status = Integer.parseInt(request.getParameter("status"));
-		System.out.println("u:"+username+" p:"+pass+" s:"+status);
+		//System.out.println("u:"+username+" p:"+pass+" s:"+status);
 		if(authenticator.isAuthentic(status, username, pass)){
 			Cookie c = new Cookie("sessionId", authenticator.generateSession(username));
 			c.setMaxAge(60*60*3);
 			response.addCookie(c);
-			response.sendRedirect("adminMainPage.jsp");		
+			switch(status){
+			case 1:response.sendRedirect("adminMainPage.jsp");
+					break;
+			case 2:response.sendRedirect("teacherMainPage.jsp");
+					break;
+			}
 		}
 		else
 			response.sendRedirect("invalidCredentials.html");
