@@ -59,7 +59,7 @@
 
         
 		<p>
-			<a class="btn btn-warning btn-sm" href="teacherAddExam.html">Add new exam</a>
+			<a class="btn btn-warning btn-sm" href="teacherAddExam.jsp">Add new exam</a>
 		</p>
 		<p>
 			<a class="btn btn-danger btn-sm" href="Logout">Logout</a>
