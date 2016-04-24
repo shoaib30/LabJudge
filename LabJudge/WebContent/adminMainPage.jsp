@@ -21,7 +21,6 @@
 	    	if(!user.equals("admin")) {
 	    		response.sendRedirect("index.html");
 	    	}
-	    	
 		}
 		else {
 			//System.out.println("no cookie found");
