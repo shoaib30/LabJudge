@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,22 +13,21 @@
     <title>Lab Judge</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-darkly-theme.min.css" rel="stylesheet" />
-    <link href="bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-darkly-theme.min.css" rel="stylesheet" />
+    <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body>
       <div class="container">
           <div class="jumbotron">
 	           <div class="container text-center">
-                    <a href="mainPage.html"><h1>Lab Judge</h1></a>
-                    <p>Teachers Console</p>
+                    <a href="/LabJudge"><h1>Lab Judge</h1></a>
+                    <p>Admin Console</p>
 	           </div>
         </div>
            <div class="jumbotron">
 	<div class="container">
-		<h2 class="text-center">Welcome Professor</h2>
 		<p>Lab Exams Hosted:</p>
         <table class="table table-hover">
             <thead>
@@ -54,15 +55,15 @@
               </tr>
             </tbody>
         </table>
-
-        
-		<p>
-			<a class="btn btn-warning btn-sm" href="teacherAddExam.html">Add new exam</a>
-		</p>
 	</div>
+               <p>
+			<a class="btn btn-warning btn-sm" href="addNewTeacher.html">Add Teacher</a>
+		</p>
+		<p>
+			<a class="btn btn-danger btn-sm" href="/Logout">Logout</a>
+		</p>
 </div>
     </div>
-     
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -73,3 +74,4 @@
 
   </body>
 </html>
+
