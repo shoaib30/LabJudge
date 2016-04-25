@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ page language="java" import="java.sql.*" %>
+    
 <jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
 <%
 	Cookie cookies[] = request.getCookies();
@@ -56,7 +58,85 @@
         </div>
     <div class="jumbotron">
         <div class="container">
-            <h2>Operating Systems Lab</h2>
+        	<%
+        	String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+ 	   		String DB_URL = "jdbc:mysql://localhost:3306/lab_judge";
+ 	   		String USER = "root";
+ 	   		String PASS = "3070";
+ 	   		String labCode=request.getParameter("labCode");
+ 	   		Connection conn;
+ 	   		String teacherCode="";
+ 	   		int duration=0;
+ 	   		int status=0;
+ 	   		int sem=0;
+ 	   		String teacherName = "";
+		    try{
+ 	   			Class.forName(JDBC_DRIVER);
+		    	conn = DriverManager.getConnection(DB_URL,USER,PASS);
+				Statement stmt = conn.createStatement();
+				String sql = "select * from lab where lab_code = '"+labCode+"'";
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next())
+				{
+					String labName = rs.getString("lab_name");
+					teacherCode = rs.getString("teacher_user_name");
+					duration = rs.getInt("duration");
+					status = rs.getInt("status");
+					sem = rs.getInt("semester");
+			%>
+			<h2><%=labName %></h2>
+			<table class="table">
+                <tr>
+                    <td><b>Lab Name:</b></td>
+                    <td><%=labName %></td>
+                </tr>
+                <tr>
+                	<td><b>Lab Code:</b></td>
+                    <td><%=labCode %>
+                </tr>
+			<%	
+				}
+				int hours = duration/3600;
+				int minutes = duration%3600;
+				String Time = hours+":"+minutes;
+				
+				Statement stmt2 = conn.createStatement();
+				String sql2 = "select name from teacher where user_name = '"+teacherCode+"'";
+				ResultSet rs2 = stmt2.executeQuery(sql2);
+				while(rs2.next())
+				{
+					teacherName = rs2.getString("name");
+				}
+			%>
+			<tr>
+                    <td><b>Teacher Incharge:</b></td>
+                    <td><%=teacherName %></td>
+            </tr>
+            <tr>
+            		<td><b>Duration:</b></td>
+                    <td><%=Time %></td>
+            </tr>
+            <tr>
+            		<td><b>Status:</b></td>
+                    <td><% switch(status)
+                    		{
+                    		case 0: out.print("Pending"); break;
+           				 	case 1: out.print("In progress"); break;
+           				 	case 2: out.print("Completed"); break;
+                    		}
+                    		
+                    	%>
+                    </td>
+            </tr>
+            </table>
+			<%
+		    } catch(Exception e)
+		    {
+		    	
+		    }
+        	%>
+            
+            <!-- <h2>Operating Systems Lab</h2>
             <hr>
             <table class="table">
                 <tr>
@@ -80,7 +160,7 @@
                     <td>In Progress</td>
                 </tr>
             </table>
-            
+             -->
             
             <p>
                 <a class="btn btn-success">Start Exam</a>
