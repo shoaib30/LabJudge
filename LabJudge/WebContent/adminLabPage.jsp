@@ -97,8 +97,14 @@
 			<%	
 				}
 				int hours = duration/3600;
-				int minutes = duration%3600;
-				String Time = hours+":"+minutes;
+				int minutes = (duration%3600)/60;
+				String time="";
+				if((hours/10) == 0)
+					time = "0";
+				 time += hours+":";
+				 if((minutes/10) == 0)
+					 time +="0";
+				 time += minutes;
 				
 				Statement stmt2 = conn.createStatement();
 				String sql2 = "select name from teacher where user_name = '"+teacherCode+"'";
@@ -114,7 +120,7 @@
             </tr>
             <tr>
             		<td><b>Duration:</b></td>
-                    <td><%=Time %></td>
+                    <td><%=time %></td>
             </tr>
             <tr>
             		<td><b>Status:</b></td>
