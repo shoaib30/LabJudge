@@ -86,10 +86,52 @@
             
             
             <p>
-                <a class="btn btn-info">Stop Exam</a>
+                <a class="btn btn-info">Results</a>
             </p>
         </div>  
     </div>
+        <div class="jumbotron">
+            <div class="container">
+                <h2>Student List</h2>
+                <table class="table table-condensed text-center">       
+                <tbody>
+                    <tr>
+                        <td>1MS13IS101</td>
+                        <td>1MS13IS101</td>
+                        <td>1MS13IS101</td>
+                    </tr>
+                    <tr>
+                        <td>1MS13IS101</td>
+                        <td>1MS13IS101</td>
+                        <td>1MS13IS101</td>
+                    </tr>
+                </tbody>
+            </table>
+
+                <p class="text-center">
+                    <a class="btn btn-primary">Print List</a>
+                </p>
+            </div>
+        </div>
+          <div class="jumbotron">
+	<div class="container">
+		<h2>Question List</h2>
+        <table class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <td>Question 1</td>
+                <td>Write a program to compute the first n fiboncci numbers</td>
+                
+            </tr>
+            <tr>
+                <td>Question 2</td>
+                <td>Write a program to compute factorial of n</td>
+            </tr>
+        </tbody>
+        </table>		
+	</div>
+</div>
+
 
     </div>
 
