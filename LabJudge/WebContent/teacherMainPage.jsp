@@ -6,6 +6,7 @@
 <%
 	Cookie cookies[] = request.getCookies();
 	Cookie sessionCookie = null;
+	String user;
 	if( cookies != null ){
 		//System.out.println("Found Cookie");
 		for(Cookie cookie : cookies)	{
@@ -18,7 +19,7 @@
 		if(sessionCookie != null){
 			//System.out.println("Cookie:"+sessionCookie.getValue());
 	    	userAuthentication.setSessionId(sessionCookie.getValue());
-	    	String user = userAuthentication.getUser();
+	    	user = userAuthentication.getUser();
 	    	if(!user.startsWith("TH")) {
 	    		response.sendRedirect("index.html");
 	    	}
@@ -77,11 +78,13 @@
      	   		String USER = "root";
      	   		String PASS = "3070";
      	   		Connection conn;
+     	   		userAuthentication.setSessionId(sessionCookie.getValue());
+	    		String user_name = userAuthentication.getUser();
 			    try{
      	   			Class.forName(JDBC_DRIVER);
 			    	conn = DriverManager.getConnection(DB_URL,USER,PASS);
 					Statement stmt = conn.createStatement();
-					String sql = "select * from lab";
+					String sql = "select * from lab WHERE teacher_user_name='"+user_name+"'";
 					ResultSet rs = stmt.executeQuery(sql);
 					while(rs.next())
 					{
@@ -96,7 +99,7 @@
 				 
 				 %>">
 				 <td>
-				 	<a href="adminLabPage.jsp?<%=rs.getString("lab_code") %>">
+				 	<a href="teacherLabPage.jsp?<%=rs.getString("lab_code") %>">
 				 	<%=rs.getString("lab_name") %>
 					</a>
 				</td>
