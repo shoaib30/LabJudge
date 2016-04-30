@@ -1,6 +1,11 @@
 package helperClasses;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,6 +30,7 @@ public class addExam extends HttpServlet {
 	static final String USER = "root";
 	static final String PASS = "3070";
 	Connection conn;
+	static String dataPath = System.getProperty("user.dir")+"/Documents/Programming/JavaProject/LabJudge/data/labs/";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -57,6 +63,7 @@ public class addExam extends HttpServlet {
 		int drMins = Integer.parseInt(request.getParameter("durationMins"));
 		String teacherCode = request.getParameter("teacherCode");
 		int sem = Integer.parseInt(request.getParameter("semester"));
+		new File(dataPath+labCode).mkdirs();
 		String sql="insert into lab(lab_name,lab_code,duration,teacher_user_name,semester) values (?,?,?,?,?)";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -103,25 +110,29 @@ public class addExam extends HttpServlet {
 		}
 		int numOfQues = Integer.parseInt(request.getParameter("NumberOfQuestions"));
 		String sql3 = "insert into lab_questions (lab_code,question_num,question_content,solution_path,testcase_1,testcase_2) values (?,?,?,?,?,?)";
+		String questionContent, questionCode = null, testCase1, testCase2;
 		try {
 			PreparedStatement ps3 = conn.prepareStatement(sql3);
 			for(int i=1;i<=numOfQues;i++) {
 				ps3.setString(1, labCode);
 				ps3.setInt(2, i);
-				String questionContent = request.getParameter("Q"+i);
-				String questionCode = request.getParameter("Q"+i+"code");
-				String testCase1 = request.getParameter("Q"+i+"testCase1");
-				String testCase2 = request.getParameter("Q"+i+"testCase2");
+				questionContent = request.getParameter("Q"+i);
+				questionCode = request.getParameter("Q"+i+"code");
+				testCase1 = request.getParameter("Q"+i+"testCase1");
+				testCase2 = request.getParameter("Q"+i+"testCase2");
 				ps3.setString(3, questionContent);
 				ps3.setString(4, questionCode);
 				ps3.setString(5, testCase1);
 				ps3.setString(6, testCase2);
 				ps3.executeUpdate();
+				createSourceCodeFile(labCode,String.valueOf(i), questionCode);
+				createTestCaseFile(labCode,String.valueOf(i),testCase1,testCase2);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		response.sendRedirect("teacherMainPage.jsp");
 		
 	}
@@ -133,7 +144,35 @@ public class addExam extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	protected void createSourceCodeFile(String labCode,String questionNum, String source) throws IOException, URISyntaxException{
+		new File(dataPath+labCode+"/"+questionNum+"/solutions").mkdirs();
+		URI uri = new URI("file:///"+dataPath+labCode+"/"+questionNum+"/solutions/source.cpp");
+		File sourceCode = new File(uri);
+		sourceCode.createNewFile();
+		System.out.println("file: " + sourceCode.getAbsolutePath());
+		FileWriter out = new FileWriter(sourceCode.getAbsolutePath());
+		BufferedWriter bw = new BufferedWriter(out);
+		bw.write(source);
+		bw.close();
+	}
+	protected void createTestCaseFile(String labCode,String questionNum, String test1, String test2) throws IOException, URISyntaxException{
+		new File(dataPath+labCode+"/"+questionNum+"/testcases").mkdirs();
+		URI uri1 = new URI("file:///"+dataPath+labCode+"/"+questionNum+"/testcases/test1.txt");
+		URI uri2 = new URI("file:///"+dataPath+labCode+"/"+questionNum+"/testcases/test2.txt");
+		File testCase1 = new File(uri1);
+		File testCase2 = new File(uri2);
+		testCase1.createNewFile();
+		testCase2.createNewFile();
+		//System.out.println("file: " + sourceCode.getAbsolutePath());
+		FileWriter out1 = new FileWriter(testCase1.getAbsolutePath());
+		FileWriter out2 = new FileWriter(testCase2.getAbsolutePath());
+		BufferedWriter bw1 = new BufferedWriter(out1);
+		BufferedWriter bw2 = new BufferedWriter(out2);
+		bw1.write(test1);
+		bw2.write(test2);
+		bw1.close();
+		bw2.close();
+	}
 }
 class question
 {
