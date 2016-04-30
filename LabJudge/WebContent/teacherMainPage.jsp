@@ -99,7 +99,7 @@
 				 
 				 %>">
 				 <td>
-				 	<a href="teacherLabPage.jsp?<%=rs.getString("lab_code") %>">
+				 	<a href="teacherLabPage.jsp?labCode=<%=rs.getString("lab_code") %>">
 				 	<%=rs.getString("lab_name") %>
 					</a>
 				</td>

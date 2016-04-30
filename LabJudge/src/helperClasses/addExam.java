@@ -122,7 +122,7 @@ public class addExam extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("teacherMainPage.jsp");
+		//response.sendRedirect("teacherMainPage.jsp");
 		
 	}
 

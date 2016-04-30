@@ -90,7 +90,7 @@
             <p>New Lab</p>
        </div>
     </div>
-<form class="form-horizontal" action="addExam">
+<form class="form-horizontal" action="addExam" method="post">
 <!--<fieldset>  -->
     <div class="jumbotron">
         <div class="container">
