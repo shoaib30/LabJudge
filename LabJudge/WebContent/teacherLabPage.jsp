@@ -241,24 +241,17 @@
 							} catch(Exception e) {
 								
 							}
-							for(int i=0;i<(individualUSN.length/2);i++)
-							{
-								%>
-								<td><%=individualUSN[i] %></td>
-								<%
+							for(int i=0; i<(individualUSN.length/3);i++)	{
+								out.println("<tr>");
+								out.println("<td>" + individualUSN[i*3] + "</td>");
+								out.println("<td>" + individualUSN[i*3+1] + "</td>");
+								out.println("<td>" + individualUSN[i*3+2] + "</td>");
+								out.println("</tr>");
+									
 							}
+							
 						%>
-						</tr>
-						<tr>
-						<%
-							for(int i=(individualUSN.length/2);i<(individualUSN.length);i++)
-							{
-								%>
-								<td><%=individualUSN[i] %></td>
-								<%
-							}
-						%>
-						</tr>
+						
 					</tbody>
 				</table>
 
