@@ -1,5 +1,10 @@
 package helperClasses;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,6 +30,7 @@ public class addExam extends HttpServlet {
 	static final String USER = "root";
 	static final String PASS = "3070";
 	Connection conn;
+	static String dataPath = "/data/labs/";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -103,15 +109,16 @@ public class addExam extends HttpServlet {
 		}
 		int numOfQues = Integer.parseInt(request.getParameter("NumberOfQuestions"));
 		String sql3 = "insert into lab_questions (lab_code,question_num,question_content,solution_path,testcase_1,testcase_2) values (?,?,?,?,?,?)";
+		String questionContent, questionCode = null, testCase1, testCase2;
 		try {
 			PreparedStatement ps3 = conn.prepareStatement(sql3);
 			for(int i=1;i<=numOfQues;i++) {
 				ps3.setString(1, labCode);
 				ps3.setInt(2, i);
-				String questionContent = request.getParameter("Q"+i);
-				String questionCode = request.getParameter("Q"+i+"code");
-				String testCase1 = request.getParameter("Q"+i+"testCase1");
-				String testCase2 = request.getParameter("Q"+i+"testCase2");
+				questionContent = request.getParameter("Q"+i);
+				questionCode = request.getParameter("Q"+i+"code");
+				testCase1 = request.getParameter("Q"+i+"testCase1");
+				testCase2 = request.getParameter("Q"+i+"testCase2");
 				ps3.setString(3, questionContent);
 				ps3.setString(4, questionCode);
 				ps3.setString(5, testCase1);
@@ -122,6 +129,7 @@ public class addExam extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		createSourceCodeFile(labCode,questionCode);
 		response.sendRedirect("teacherMainPage.jsp");
 		
 	}
@@ -133,7 +141,14 @@ public class addExam extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	protected void createSourceCodeFile(String labCode, String source) throws IOException{
+		File sourceCode = new File(dataPath + labCode + "/solution/source.cpp");
+		sourceCode.createNewFile();
+		FileWriter out = new FileWriter(sourceCode.getAbsolutePath());
+		BufferedWriter bw = new BufferedWriter(out);
+		bw.write(source);
+		bw.close();
+	}
 }
 class question
 {
