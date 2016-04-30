@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
 <%
+	String user="";
 	Cookie cookies[] = request.getCookies();
 	Cookie sessionCookie = null;
 	if( cookies != null ){
@@ -16,7 +17,7 @@
 		if(sessionCookie != null){
 			//System.out.println("Cookie:"+sessionCookie.getValue());
 	    	userAuthentication.setSessionId(sessionCookie.getValue());
-	    	String user = userAuthentication.getUser();
+	    	user = userAuthentication.getUser();
 	    	if(!user.startsWith("TH")) {
 	    		response.sendRedirect("index.html");
 	    	}
@@ -61,6 +62,7 @@
               singleStudents++;
               $("#single-students").append("<div class='col-md-3'><div class='input-group'><span class='input-group-addon'>1MS</span><input id='student"+singleStudents+"' name='student"+singleStudents+"' class='form-control' placeholder='13IS101' type='text'>")
               $("#num-of-studs").html(numberOfStudents);
+              $("#singleStudents").attr("value",singleStudents);
           })
           $("#stud-usn-end").on("blur", function()  {
               //alert("end:"+$("#stud-usn-end").val()+"\nstart: "+$("#stud-usn-start").val().substring(4,7))
@@ -71,9 +73,12 @@
           $("#add-ques").on("click",function()  {
               numberOfQuestions++;
               $("#num-of-ques").html(numberOfQuestions)
-              $("#question-area").append(" <div class='form-group'><input type='hidden' name='Q"+numberOfQuestions+"num' value='"+numberOfQuestions+"'/><label class='col-md-4 control-label' for='Q'>Question: "+numberOfQuestions+"</label><div class='col-md-4'><textarea class='form-control' id='Q"+numberOfQuestions+"' name='Q"+numberOfQuestions+"'></textarea></div></div><div class='form-group'><label class='col-md-4 control-label' for='source'>Source Code</label><div class='col-md-4'><input id='Q"+numberOfQuestions+"source' name='Q"+numberOfQuestions+"source' class='input-file' type='file'></div></div><div class='form-group'><label class='col-md-4 control-label' for='testCase'>Test Cases</label><div class='col-md-3'><textarea class='form-control ' id='Q"+numberOfQuestions+"testCase1' name='Q"+numberOfQuestions+"testCase1'></textarea></div><div class='col-md-3'><textarea class='form-control' id='Q"+numberOfQuestions+"testCase2' name='Q"+numberOfQuestions+"testCase2'></textarea></div></div><hr/>")
+              $("#NumberOfQuestions").attr("value",numberOfQuestions);
+              $("#question-area").append(" <div class='form-group'><input type='hidden' name='Q"+numberOfQuestions+"num' value='"+numberOfQuestions+"'/><label class='col-md-4 control-label' for='Q'>Question: "+numberOfQuestions+"</label><div class='col-md-4'><textarea class='form-control' id='Q"+numberOfQuestions+"' name='Q"+numberOfQuestions+"'></textarea></div></div><div class='form-group'><label class='col-md-4 control-label' for='source'>Source Code</label><div class='col-md-8'><textarea class='form-control' id='textarea' name='Q"+numberOfQuestions+"code' rows='8'></textarea></div></div><div class='form-group'><label class='col-md-4 control-label' for='testCase'>Test Cases</label><div class='col-md-3'><textarea class='form-control ' id='Q"+numberOfQuestions+"testCase1' name='Q"+numberOfQuestions+"testCase1'></textarea></div><div class='col-md-3'><textarea class='form-control' id='Q"+numberOfQuestions+"testCase2' name='Q"+numberOfQuestions+"testCase2'></textarea></div></div><hr/>")
           })
       })
+      //<div class='col-md-4'><input id='Q"+numberOfQuestions+"source' name='Q"+numberOfQuestions+"source' class='input-file' type='file'></div>
+       ""
       </script>
   </head>
 
@@ -85,7 +90,7 @@
             <p>New Lab</p>
        </div>
     </div>
-<form class="form-horizontal">
+<form class="form-horizontal" action="addExam">
 <!--<fieldset>  -->
     <div class="jumbotron">
         <div class="container">
@@ -137,14 +142,14 @@
                 </div>
               </div>
             </div>
-			<input type="hidden" name="teacherCode" value="THIS001"/>
+			<input type="hidden" name="teacherCode" value="<%=user%>"/>
             
         </div>
     </div>
     <div class="jumbotron">
 	<div class="container">
         <legend>Student List <br/>Number of students: <span id="num-of-studs"></span></legend>
-        <input type="hidden" name="singleStudents" value="0"/>
+        <input type="hidden" name="singleStudents" value="0" id="singleStudents"/>
 		 <!-- Prepended text-->
             <div class="form-group">
               <label class="col-md-4 control-label" for="stud-usn-start">Student USN</label>
@@ -180,7 +185,7 @@
  <div class="jumbotron">
 	<div class="container">
         <legend>Question List<br/>Number of Questions: <span id="num-of-ques"></span></legend>
-        <input type="hidden" name="NumberOfQuestions" value="0"/>
+        <input type="hidden" name="NumberOfQuestions" value="0" id="NumberOfQuestions"/>
         <div id="question-area"></div>
         <button type="button" class="btn btn-primary" id="add-ques">Add New Question</button>
        

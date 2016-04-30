@@ -72,13 +72,13 @@ public class addExam extends HttpServlet {
 		}
 		
 		String usnPrepend = request.getParameter("stud-usn-start");
-		int usnStart = Integer.parseInt(usnPrepend.substring(8));
-		usnPrepend = usnPrepend.substring(0, 8);
+		int usnStart = Integer.parseInt(usnPrepend.substring(4));
+		usnPrepend = usnPrepend.substring(0, 4);
 		int usnEnd = Integer.parseInt(request.getParameter("stud-usn-end"));
 		String allStudents = "";
-		for(int i=usnStart; i<usnEnd; i++)
+		for(int i=usnStart; i<=usnEnd; i++)
 		{
-			allStudents+=usnPrepend;
+			allStudents+="1MS" + usnPrepend;
 			if((i/100) ==0)
 			{
 				allStudents+="0";
@@ -101,7 +101,27 @@ public class addExam extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		int numOfQues = Integer.parseInt(request.getParameter("NumberOfQuestions"));
+		String sql3 = "insert into lab_questions (lab_code,question_num,question_content,solution_path,testcase_1,testcase_2) values (?,?,?,?,?,?)";
+		try {
+			PreparedStatement ps3 = conn.prepareStatement(sql3);
+			for(int i=1;i<=numOfQues;i++) {
+				ps3.setString(1, labCode);
+				ps3.setInt(2, i);
+				String questionContent = request.getParameter("Q"+i);
+				String questionCode = request.getParameter("Q"+i+"code");
+				String testCase1 = request.getParameter("Q"+i+"testCase1");
+				String testCase2 = request.getParameter("Q"+i+"testCase2");
+				ps3.setString(3, questionContent);
+				ps3.setString(4, questionCode);
+				ps3.setString(5, testCase1);
+				ps3.setString(6, testCase2);
+				ps3.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
