@@ -114,12 +114,16 @@ public class studentHelperServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		if(status==1)	{
-			response.getWriter().println("correct");
-		}else	{
-			response.getWriter().println("wrong");
+			
+			try {
+				PreparedStatement ps2 = conn.prepareStatement("UPDATE student set status=1 where usn='"+user+"'");
+				ps2.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-
+		response.sendRedirect("studentSubmissionResponse.jsp");
 	}
 	protected int findNumQues(String labCode) throws SQLException	{
 		String sql = "SELECT COUNT( * ) AS questions FROM lab_questions WHERE lab_code =  '" + labCode + "'";
@@ -176,7 +180,7 @@ public class studentHelperServlet extends HttpServlet {
 	    String line;
 	    int status = 0;
 	    while ((line = br.readLine()) != null) {
-	    	System.out.println(line);
+	    	//System.out.println(line);
 	      status = Integer.parseInt(line);
 	    }
 	    return status;

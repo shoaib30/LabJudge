@@ -32,7 +32,24 @@
 	} else
 		response.sendRedirect("index.jsp");
 %>
+<%
+	String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+	String DB_URL = "jdbc:mysql://localhost:3306/lab_judge";
+	String USER = "root";
+	String PASS = "3070";
+	Connection conn;
+	Class.forName(JDBC_DRIVER);
+	conn = DriverManager.getConnection(DB_URL,USER,PASS);
+	Statement stmt = conn.createStatement();
+	String sql = "SELECT status from student where usn='"+user+"'";
+	ResultSet rs = stmt.executeQuery(sql);
+	int status=0;
+	while(rs.next())
+		status = rs.getInt("status");
+	if(status==1)
+		response.sendRedirect("studentSubmissionResponse.jsp");
 
+%>
 <jsp:useBean id="student" class="helperClasses.StudentHelper"></jsp:useBean>
 <%
 student.setUSN(user);

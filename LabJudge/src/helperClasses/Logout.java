@@ -46,6 +46,7 @@ public class Logout extends HttpServlet {
 			}
 			else {
 				System.out.println("no cookie found");
+				response.sendRedirect("/LabJudge");
 			}
 		}
 	}
