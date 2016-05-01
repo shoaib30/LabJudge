@@ -33,6 +33,10 @@
 		response.sendRedirect("index.jsp");
 %>
 
+<jsp:useBean id="student" class=helperClasses.StudentHelper></jsp:useBean>
+<%
+student.setUSN(user);
+%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -54,7 +58,7 @@
     <script src="js/bootstrap.min.js"></script>
       <script>
           $(document).ready(function()   {
-            var totalSeconds = 3600;
+            var totalSeconds = <%=student.getTimeLeft()%>;
             var timerID = setInterval(function()    {
                 var time = totalSeconds;
                 hours = Math.floor(time / 3600);
@@ -104,8 +108,8 @@
         <div class="col-xs-9">
             <div class="jumbotron">
 	           <div class="container">
-		          <h2>Question</h2>
-		          <p>[INSERT CONTENT HERE ...]</p>
+		          <h2><%=student.getQno() %></h2>
+		          <p><%=student.getQuestionContent() %></p>
 			         <form class="form-horizontal">
                         <fieldset>
                             <!-- Form Name -->
