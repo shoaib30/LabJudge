@@ -20,16 +20,16 @@
 	    	userAuthentication.setSessionId(sessionCookie.getValue());
 	    	String user = userAuthentication.getUser();
 	    	if(!user.equals("admin")) {
-	    		response.sendRedirect("index.html");
+	    		response.sendRedirect("index.jsp");
 	    	}
 	    	
 		}
 		else {
 			//System.out.println("no cookie found");
-			response.sendRedirect("index.html");
+			response.sendRedirect("index.jsp");
 		}
 	}else
-		response.sendRedirect("index.html");
+		response.sendRedirect("index.jsp");
 %>
     
 <!DOCTYPE html>

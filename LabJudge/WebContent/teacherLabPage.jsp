@@ -23,15 +23,15 @@
 			userAuthentication.setSessionId(sessionCookie.getValue());
 			user = userAuthentication.getUser();
 			if (!user.startsWith("TH")) {
-				response.sendRedirect("index.html");
+				response.sendRedirect("index.jsp");
 			}
 
 		} else {
 			//System.out.println("no cookie found");
-			response.sendRedirect("index.html");
+			response.sendRedirect("index.jsp");
 		}
 	} else
-		response.sendRedirect("index.html");
+		response.sendRedirect("index.jsp");
 %>
 <!DOCTYPE html>
 <html lang="en">
