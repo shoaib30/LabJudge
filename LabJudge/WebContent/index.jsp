@@ -2,6 +2,34 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page language="java" import="java.sql.*" %>
    
+ <jsp:useBean id="userAuthentication" class="helperClasses.AuthenticationHelper"></jsp:useBean>
+
+<%
+	Cookie cookies[] = request.getCookies();
+	Cookie sessionCookie = null;
+	if( cookies != null ){
+		//System.out.println("Found Cookie");
+		for(Cookie cookie : cookies)	{
+			//System.out.println("CookieName:"+cookie.getName());
+			if(cookie.getName().equals("sessionId")){
+				sessionCookie = cookie;
+				break;
+			}
+		}
+		if(sessionCookie != null){
+			//System.out.println("Cookie:"+sessionCookie.getValue());
+	    	userAuthentication.setSessionId(sessionCookie.getValue());
+	    	String user = userAuthentication.getUser();
+	    	if(user.startsWith("1MS")) {
+	    		response.sendRedirect("studentStartExam.jsp");
+	    	}
+		}
+		else {
+			//System.out.println("no cookie found");
+		}
+	}
+%>
+   
 
 <%
 String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -115,11 +143,11 @@ try {
 
                                         <!-- Prepended text-->
                                         <div class="form-group">
-                                          <label class="col-md-4 control-label" for="prependedtext" >USN</label>
+                                          <label class="col-md-4 control-label" for="username" >USN</label>
                                           <div class="col-md-5">
                                             <div class="input-group">
                                               <span class="input-group-addon">1MS</span>
-                                              <input id="prependedtext" name="prependedtext" class="form-control" placeholder="USN" type="text" required="" pattern="[0-9]{2}[A-Z]{2}[0-9]{3}" title="USN in uppercase">
+                                              <input id="username" name="username" class="form-control" placeholder="USN" type="text" required="" pattern="[0-9]{2}[A-Z]{2}[0-9]{3}" title="USN in uppercase">
                                             </div>
 
                                           </div>

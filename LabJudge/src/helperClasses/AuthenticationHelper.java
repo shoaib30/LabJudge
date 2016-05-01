@@ -72,12 +72,15 @@ public class AuthenticationHelper {
 	   }
 	   boolean authenticateStudent(String username, String pass)	{
 		   String sql = "select * from student";
+		   //username = "1MS" + username;
+		   //System.out.println("user: "+username);
 		   boolean flag = false;
 		   try {
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while(rs.next())	{
 					if(rs.getString("usn").equals(username))	{
+						//System.out.println("password: "+pass);
 						if(rs.getString("pass").equals(pass))	{
 							flag = true;
 						}

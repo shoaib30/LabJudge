@@ -44,6 +44,7 @@ public class Authentication extends HttpServlet {
 		String username = request.getParameter("username");
 		String pass = request.getParameter("pass");
 		int status = Integer.parseInt(request.getParameter("status"));
+		if(status == 3)	username = "1MS" + username;
 		//System.out.println("u:"+username+" p:"+pass+" s:"+status);
 		if(authenticator.isAuthentic(status, username, pass)){
 			Cookie c = new Cookie("sessionId", authenticator.generateSession(username));
