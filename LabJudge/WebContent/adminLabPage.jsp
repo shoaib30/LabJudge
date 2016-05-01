@@ -169,8 +169,18 @@
              -->
             
             <p>
-                <a class="btn btn-success" href="StartExam?labCode=<%=labCode%>">Start Exam</a>
-                <a class="btn btn-info">Stop Exam</a>
+                <a class="btn btn-success" 
+                <%if(status==1 || status==2){%>
+                	disabled
+                <%}else{%>
+                	href="StartExam?labCode=<%=labCode%>"<% 
+                }%>>Start Exam</a>
+                <a class="btn btn-info" 
+               <%if(status==0 || status==2){%>
+                	disabled
+                <%}else{%>
+                	href="#?labCode=<%=labCode%>"<% 
+                }%>>Stop Exam</a>
                 <a class="btn btn-danger">Delete Exam</a>
             </p>
         </div>  

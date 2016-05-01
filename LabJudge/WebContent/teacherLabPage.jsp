@@ -172,7 +172,8 @@
              -->
 
 				<p>
-					<a class="btn btn-info">Results</a>
+					<a class="btn btn-info" <%if(status!=3)
+						out.println("disabled");%>>Results</a>
 				</p>
 			</div>
 		</div>
@@ -256,7 +257,13 @@
 				</table>
 
 				<p class="text-center">
-					<a class="btn btn-primary">Print List</a>
+					<a class="btn btn-primary" 
+					<%if(status==1) {%>
+					href="studentList.jsp?labCode=<%=labCode%>"
+					<%}else{%>
+						disabled
+					<%}%>
+					target="_blank">Print List</a>
 				</p>
 			</div>
 		</div>

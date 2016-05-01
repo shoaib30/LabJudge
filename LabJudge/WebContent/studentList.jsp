@@ -21,9 +21,18 @@
 		window.print();
 	}
 </script>
+<style>
+	th,td {
+		padding:10px;
+	}
+</style>
 </head>
 <body>
-	<table>
+	<table  border="true">
+		<tr>
+			<th>USN</th>
+			<th>Password</th>
+		</tr>
 		<%
 			Statement stmt = conn.createStatement();
 			String sql = "select usn,pass from student where labcode = '"+request.getParameter("labCode")+"'";
