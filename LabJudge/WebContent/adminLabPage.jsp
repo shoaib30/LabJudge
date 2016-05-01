@@ -169,7 +169,7 @@
              -->
             
             <p>
-                <a class="btn btn-success">Start Exam</a>
+                <a class="btn btn-success" href="StartExam?labCode=<%=labCode%>">Start Exam</a>
                 <a class="btn btn-info">Stop Exam</a>
                 <a class="btn btn-danger">Delete Exam</a>
             </p>
