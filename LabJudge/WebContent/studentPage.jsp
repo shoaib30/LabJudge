@@ -76,7 +76,7 @@ student.setDetails();
             $("#questionChnage").on("click",function()  {
                 var a = confirm("Are you sure you want to change question?");
                 if(a)   {
-                    window.location="questionSelectoPage.html";
+                    window.location="studentHelperServlet?chq=1";
                 }
             })
         })
@@ -111,7 +111,7 @@ student.setDetails();
 	           <div class="container">
 		          <h2>Question: <%=student.getQno() %></h2>
 		          <p><%=student.getQuestionContent() %></p>
-			         <form class="form-horizontal">
+			         <form class="form-horizontal" action = "studentHelperServlet" method ="post">
                         <fieldset>
                             <!-- Form Name -->
                             <legend class="text-center">Submission</legend>
