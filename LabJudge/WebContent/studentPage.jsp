@@ -33,9 +33,10 @@
 		response.sendRedirect("index.jsp");
 %>
 
-<jsp:useBean id="student" class=helperClasses.StudentHelper></jsp:useBean>
+<jsp:useBean id="student" class="helperClasses.StudentHelper"></jsp:useBean>
 <%
 student.setUSN(user);
+student.setDetails();
 %>
 <html lang="en">
   <head>
@@ -108,7 +109,7 @@ student.setUSN(user);
         <div class="col-xs-9">
             <div class="jumbotron">
 	           <div class="container">
-		          <h2><%=student.getQno() %></h2>
+		          <h2>Question: <%=student.getQno() %></h2>
 		          <p><%=student.getQuestionContent() %></p>
 			         <form class="form-horizontal">
                         <fieldset>

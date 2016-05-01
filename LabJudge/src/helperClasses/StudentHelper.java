@@ -34,7 +34,7 @@ public class StudentHelper {
 		{
 			if(!rs.getBoolean("attempted"))
 			{
-				PreparedStatement ps=conn.prepareStatement("update student set start_time = NOW() where usn='"+usn+"'");
+				PreparedStatement ps=conn.prepareStatement("update student set start_time = NOW(), attempted=1  where usn='"+usn+"'");
 				ps.executeUpdate();
 			}
 		}
