@@ -120,6 +120,16 @@ public class StartExam extends HttpServlet {
 			ps.setInt(4, questNum);
 			ps.executeUpdate();
 		}
+		for(int i=1; i<=numberOfQuestions; i++){
+			ProcessBuilder builder = new ProcessBuilder("bash","initiateExam.sh",labCode,String.valueOf(i));
+			try {
+				Process p = builder.start();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		String statusSQL = "UPDATE lab SET STATUS =1 WHERE lab_code =  '" + labCode + "'";
 		PreparedStatement ps2 = conn.prepareStatement(statusSQL);
 		ps2.executeUpdate();
