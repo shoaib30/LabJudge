@@ -146,6 +146,7 @@ public class addExam extends HttpServlet {
 	}
 	protected void createSourceCodeFile(String labCode,String questionNum, String source) throws IOException, URISyntaxException{
 		new File(dataPath+labCode+"/"+questionNum+"/solutions").mkdirs();
+		new File(dataPath+labCode+"/"+questionNum+"/submissions/outputs").mkdirs();
 		URI uri = new URI("file:///"+dataPath+labCode+"/"+questionNum+"/solutions/source.cpp");
 		File sourceCode = new File(uri);
 		sourceCode.createNewFile();

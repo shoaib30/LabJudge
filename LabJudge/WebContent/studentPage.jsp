@@ -59,6 +59,8 @@ student.setDetails();
     <script src="js/bootstrap.min.js"></script>
       <script>
           $(document).ready(function()   {
+          <% if(student.getTimeLeft()<=0)
+        	  response.sendRedirect("studentTimeUp.jsp");%>
             var totalSeconds = <%=student.getTimeLeft()%>;
             var timerID = setInterval(function()    {
                 var time = totalSeconds;
@@ -69,7 +71,8 @@ student.setDetails();
                 $("#timer").html(hours +":"+ mins +":"+ secs)
                   totalSeconds -=1
                   if(totalSeconds<0){
-                      alert("end")
+                	 alert("Time Up");
+                     location.reload();
                      clearInterval(timerID)
                   }
           },1000)
@@ -117,19 +120,19 @@ student.setDetails();
                             <legend class="text-center">Submission</legend>
                             <!-- Textarea -->
                             <div class="form-group">
-                              <label class="col-md-2 control-label" for="textarea">Paste Code</label>
+                              <label class="col-md-2 control-label" for="code">Paste Code</label>
                               <div class="col-md-8">                     
-                                <textarea class="form-control" id="textarea" name="textarea" rows="8"></textarea>
+                                <textarea class="form-control" id="code" name="code" rows="8"></textarea>
                               </div>
                             </div>
-                            <legend class="text-center"><b>-OR-</b></legend>
+                            <!-- <legend class="text-center"><b>-OR-</b></legend> -->
                             <!-- File Button --> 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                               <label class="col-md-2 control-label" for="filebutton">Upload Code</label>
                               <div class="col-md-4">
                                 <input id="filebutton" name="filebutton" class="input-file" type="file"/>
                               </div>
-                            </div>
+                            </div> -->
                             <!-- Button (Double) -->
                             <div class="form-group">
                               <label class="col-md-4 control-label" for="btn_code_submit"></label>
