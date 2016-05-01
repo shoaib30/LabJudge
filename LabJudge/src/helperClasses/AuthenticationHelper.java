@@ -70,6 +70,24 @@ public class AuthenticationHelper {
 			}
 			return flag;
 	   }
+	   boolean authenticateStudent(String username, String pass)	{
+		   String sql = "select * from student";
+		   boolean flag = false;
+		   try {
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next())	{
+					if(rs.getString("usn").equals(username))	{
+						if(rs.getString("pass").equals(pass))	{
+							flag = true;
+						}
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return flag;
+	   }
 	   String generateSession(String username)	{
 		   String sessionId;
 		   sessionId = new BigInteger(130, random).toString(32);
@@ -88,6 +106,7 @@ public class AuthenticationHelper {
 		   switch(status)	{
 		   case 1:return authenticateAdmin(username,pass);
 		   case 2:return authenticateTeacher(username,pass);
+		   case 3:return authenticateStudent(username,pass);
 		   }		   
 		   return false;
 	   }

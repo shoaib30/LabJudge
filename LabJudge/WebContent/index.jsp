@@ -109,7 +109,7 @@ try {
                                           <button type="submit" class="btn btn-default">Login</button>
                                         </form>
 -->
-                                        <form class="form-horizontal" action="questionSelectoPage.html">
+                                        <form class="form-horizontal" action="Authentication">
                                         <fieldset>
 
 
@@ -127,13 +127,13 @@ try {
 
                                         <!-- Password input-->
                                         <div class="form-group">
-                                          <label class="col-md-4 control-label" for="password">Password</label>
+                                          <label class="col-md-4 control-label" for="passw">Password</label>
                                           <div class="col-md-5">
-                                            <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
+                                            <input id="pass" name="pass" type="password" placeholder="Password" class="form-control input-md" required="">
 
                                           </div>
                                         </div>
-
+										<input type="hidden" name="status" value="3"/>
                                         <!-- Button -->
                                         <div class="form-group">
                                           <label class="col-md-4 control-label" for="loginBtn"></label>

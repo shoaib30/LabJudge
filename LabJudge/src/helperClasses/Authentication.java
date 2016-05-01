@@ -54,6 +54,7 @@ public class Authentication extends HttpServlet {
 					break;
 			case 2:response.sendRedirect("teacherMainPage.jsp");
 					break;
+			case 3:response.sendRedirect("studentStartExam.jsp");
 			}
 		}
 		else
