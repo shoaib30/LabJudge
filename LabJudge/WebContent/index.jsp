@@ -202,7 +202,7 @@ try {
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+                        <img src="img/admin_page.png" class="img-responsive">
                     </div>
                     <div class="col-md-6">
                         <h1 class="text-primary">Student</h1>
@@ -221,7 +221,7 @@ try {
                         <p>The console made for the teachers to set the questions for lab is powerful enough to not only provide different options for set up, i.e. by uploading a program for generating output(recommended) or by giving different cases of input and output. The teacher can set up any number of boudry test cases to be checked when the student submits the code. On completion of the exam, the Teacher can export the results in form of a spreadsheet or take a printout of the results directly from the application.</p>
                     </div>
                     <div class="col-md-6">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+                        <img src="img/teacher_page.png" class="img-responsive">
                     </div>
                 </div>
             </div>

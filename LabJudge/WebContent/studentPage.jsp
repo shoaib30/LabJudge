@@ -154,6 +154,7 @@ student.setDetails();
                             <div class="form-group">
                               <label class="col-md-4 control-label" for="btn_code_submit"></label>
                               <div class="col-md-8">
+                              	<input type="hidden" name="chq" value="0"/>
                                 <button id="btn_code_submit" name="btn_code_submit" class="btn btn-success">Submit Code</button>
                                 <button id="btn_reset_code" name="btn_reset_code" class="btn btn-warning">Clear Code</button>
                               </div>

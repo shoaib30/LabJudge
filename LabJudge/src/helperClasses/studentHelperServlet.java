@@ -96,7 +96,7 @@ public class studentHelperServlet extends HttpServlet {
 				}
 			} else
 				response.sendRedirect("index.jsp");
-		if(request.getParameter("chq")!=null)
+		if(request.getParameter("chq").equals("1"))
 		{
 			try {
 				changeQuestion(user);
@@ -105,7 +105,7 @@ public class studentHelperServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}else if(request.getParameter("chq").equals("2")){
 		int status = 0;
 		try {
 			status = submitCode(user,request.getParameter("code"));
@@ -124,6 +124,7 @@ public class studentHelperServlet extends HttpServlet {
 			}
 		}
 		response.sendRedirect("studentSubmissionResponse.jsp");
+		}
 	}
 	protected int findNumQues(String labCode) throws SQLException	{
 		String sql = "SELECT COUNT( * ) AS questions FROM lab_questions WHERE lab_code =  '" + labCode + "'";

@@ -179,7 +179,7 @@
                <%if(status==0 || status==2){%>
                 	disabled
                 <%}else{%>
-                	href="#?labCode=<%=labCode%>"<% 
+                	href="StopExam?labCode=<%=labCode%>"<% 
                 }%>>Stop Exam</a>
                 <a class="btn btn-danger">Delete Exam</a>
             </p>
