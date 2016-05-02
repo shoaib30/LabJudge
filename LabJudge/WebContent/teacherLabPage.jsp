@@ -172,14 +172,8 @@
              -->
 
 				<p>
-					<a class="btn btn-info" 
-					<%if(status!=3)
-						out.println("disabled");
-					else
-					%>
-					href="results.jsp?labCode=<%= labCode %>"
-					<%
-					%>>Results</a>
+					<a class="btn btn-info" <%if(status!=3)
+						out.println("disabled");%>>Results</a>
 				</p>
 			</div>
 		</div>
