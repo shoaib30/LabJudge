@@ -37,7 +37,7 @@
 		</tr>
 		<%
 			Statement stmt = conn.createStatement();
-			String sql = "select usn,ques_no,ques_change,status from student where labcode = '"+request.getParameter("labCode")+"'";
+			String sql = "select usn,ques_no,ques_change,status from results where lab_code = '"+request.getParameter("labCode")+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next())
 			{

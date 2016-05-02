@@ -129,7 +129,6 @@ public class StartExam extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 		String statusSQL = "UPDATE lab SET STATUS =1 WHERE lab_code =  '" + labCode + "'";
 		PreparedStatement ps2 = conn.prepareStatement(statusSQL);
 		ps2.executeUpdate();

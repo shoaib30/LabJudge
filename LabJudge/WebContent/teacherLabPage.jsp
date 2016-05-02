@@ -173,12 +173,13 @@
 
 				<p>
 					<a class="btn btn-info" 
-					<%if(status!=3)
+					<%if(status!=2){
 						out.println("disabled");
-					else
+					}else{
 					%>
 					href="results.jsp?labCode=<%= labCode %>"
-					<%
+					target="_blank"
+					<%}
 					%>>Results</a>
 				</p>
 			</div>
@@ -204,14 +205,10 @@
 							<td>Question <%=qno %></td>
 							<td><%=qContent %></td>
 						</tr>
-						<%
-							}
+						<%}
 						} catch(Exception e) {
 							
-						}
-						
-						
-						%>
+						}%>
 						<!-- <tr>
 							<td>Question 1</td>
 							<td>Write a program to compute the first n fiboncci numbers</td>

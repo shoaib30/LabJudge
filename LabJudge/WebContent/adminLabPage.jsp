@@ -47,6 +47,18 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-darkly-theme.min.css" rel="stylesheet" />
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script>
+    	$(document).ready(function()	{
+    		$("#delBtn").on("click", function()	{
+    			var a = confirm("Are you sure you want to delete the lab?");
+                if(a)   {
+                	
+                    window.location="DeleteExam?labCode=<%=request.getParameter("labCode") %>";
+                }
+    		})
+    	})
+    </script>
   </head>
 
   <body>
@@ -181,7 +193,7 @@
                 <%}else{%>
                 	href="StopExam?labCode=<%=labCode%>"<% 
                 }%>>Stop Exam</a>
-                <a class="btn btn-danger">Delete Exam</a>
+                <a class="btn btn-danger" id="delBtn">Delete Exam</a>
             </p>
         </div>  
     </div>
@@ -191,7 +203,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-2.2.0.min.js"></script>
+    
     <script src="js/bootstrap.min.js"></script>
 
 

@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-
-<%@ page language="java" import="java.sql.*"%>
-
-<jsp:useBean id="userAuthentication"
+    pageEncoding="UTF-8"%>
+    
+    <jsp:useBean id="userAuthentication"
 	class="helperClasses.AuthenticationHelper"></jsp:useBean>
 <%
 	Cookie cookies[] = request.getCookies();
@@ -33,22 +31,6 @@
 	} else
 		response.sendRedirect("index.jsp");
 %>
-<%
-	String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	String DB_URL = "jdbc:mysql://localhost:3306/lab_judge";
-	String USER = "root";
-	String PASS = "3070";
-	Connection conn;
-	Class.forName(JDBC_DRIVER);
-	conn = DriverManager.getConnection(DB_URL,USER,PASS);
-	Statement stmt = conn.createStatement();
-	String sql = "SELECT status from student where usn='"+user+"'";
-	ResultSet rs = stmt.executeQuery(sql);
-	int status=0;
-	while(rs.next())
-		status = rs.getInt("status");
-%>
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -72,30 +54,15 @@
                     <a href="/LabJudge"><h1>Lab Judge</h1></a>
 	           </div>
         </div>
-        <%
-        if(status == 0){
-        %>
         <div class="jumbotron alert alert-danger">
 	       <div class="container text-center">
-                <h1>Wrong Submission</h1>
-                <p>Please Try Again</p>
-                <p>
-                    <a class="btn btn-default btn-lg" href="studentPage.jsp">Return</a>
-                </p>
-	       </div>
-        </div>
-        <%
-        }else{%>
-          <div class="jumbotron alert alert-success">
-	       <div class="container text-center">
-                <h1>Submission Accepted</h1>
-               <p>Well Done</p>
+                <h1>Time Up</h1>
+                <p>Submission Time is over</p>
                 <p>
                     <a class="btn btn-default btn-lg" href="Logout">Logout</a>
                 </p>
 	       </div>
         </div>
-        <%} %>
       </div>
 
     <!-- Bootstrap core JavaScript

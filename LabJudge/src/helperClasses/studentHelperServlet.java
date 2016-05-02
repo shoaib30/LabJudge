@@ -105,25 +105,24 @@ public class studentHelperServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(request.getParameter("chq").equals("2")){
-		int status = 0;
-		try {
-			status = submitCode(user,request.getParameter("code"));
-		} catch (SQLException | URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(status==1)	{
-			
+		}else if(request.getParameter("chq").equals("0")){
+			int status = 0;
 			try {
-				PreparedStatement ps2 = conn.prepareStatement("UPDATE student set status=1 where usn='"+user+"'");
-				ps2.executeUpdate();
-			} catch (SQLException e) {
+				status = submitCode(user,request.getParameter("code"));
+			} catch (SQLException | URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		response.sendRedirect("studentSubmissionResponse.jsp");
+			if(status==1)	{		
+	 			try {
+	 				PreparedStatement ps2 = conn.prepareStatement("UPDATE student set status=1 where usn='"+user+"'");
+	 				ps2.executeUpdate();
+	 			} catch (SQLException e) {
+	 				// TODO Auto-generated catch block
+	 				e.printStackTrace();
+	 			}
+	 		}
+ 			response.sendRedirect("studentSubmissionResponse.jsp");
 		}
 	}
 	protected int findNumQues(String labCode) throws SQLException	{

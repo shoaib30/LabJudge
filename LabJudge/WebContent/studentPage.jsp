@@ -53,6 +53,7 @@
 <jsp:useBean id="student" class="helperClasses.StudentHelper"></jsp:useBean>
 <%
 student.setUSN(user);
+student.initiateExam();
 student.setDetails();
 %>
 <html lang="en">
@@ -129,8 +130,11 @@ student.setDetails();
         <div class="col-xs-9">
             <div class="jumbotron">
 	           <div class="container">
+	           <h3>Student: <%=user %></h3>
+	           <hr>
 		          <h2>Question: <%=student.getQno() %></h2>
 		          <p><%=student.getQuestionContent() %></p>
+		          <hr>
 			         <form class="form-horizontal" action = "studentHelperServlet" method ="post">
                         <fieldset>
                             <!-- Form Name -->
@@ -156,7 +160,7 @@ student.setDetails();
                               <div class="col-md-8">
                               	<input type="hidden" name="chq" value="0"/>
                                 <button id="btn_code_submit" name="btn_code_submit" class="btn btn-success">Submit Code</button>
-                                <button id="btn_reset_code" name="btn_reset_code" class="btn btn-warning">Clear Code</button>
+                                <input type="reset" id="btn_reset_code" name="btn_reset_code" class="btn btn-warning">
                               </div>
                             </div>
                         </fieldset>
@@ -167,6 +171,7 @@ student.setDetails();
               <div class="col-xs-3">
                   <div class="jumbotron">
 <!--                      <div class="container">-->
+						
                          <h3> <div class="rcorners1" >Timer
                              <div id="timer"></div>
                              </div>

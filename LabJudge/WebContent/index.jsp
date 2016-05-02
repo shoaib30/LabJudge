@@ -202,7 +202,7 @@ try {
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="img/admin_page.png" class="img-responsive">
+                        <img src="img/student_page.png" class="img-responsive">
                     </div>
                     <div class="col-md-6">
                         <h1 class="text-primary">Student</h1>
@@ -222,6 +222,20 @@ try {
                     </div>
                     <div class="col-md-6">
                         <img src="img/teacher_page.png" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="img/admin_page.png" class="img-responsive">
+                    </div>
+                    <div class="col-md-6">
+                        <h1 class="text-primary">Administrator</h1>
+                        <h3>Overall Control</h3>
+                        <p>The admin console gives the administrator the power over all exams. To provide better control over the lab exams, the Admin is given control over starting stopping and deleting exams as opposed to the teacher. This will avoid inconsistancy like two teachers starting exams simultaneously for the same student.  </p>
                     </div>
                 </div>
             </div>
