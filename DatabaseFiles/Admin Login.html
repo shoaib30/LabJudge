@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="Admin%20Login_files/bootstrap.css" rel="stylesheet">
+    <link href="Admin%20Login_files/bootstrap-darkly-theme.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+          <div class="jumbotron">
+	           <div class="container text-center">
+                    <a href="http://localhost:8081/LabJudge"><h1>Lab Judge</h1></a>
+                    <p>Admin Console</p>
+	           </div>
+        </div>
+    </div>
+    <div class="container">
+      <p>
+          </p><div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="jumbotron">
+                    <div class="container">
+                        <form class="form-horizontal" action="Authentication" method="get">
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <legend class="text-center">Admin Login</legend>
+
+                                <!-- Text input-->
+                                    <div class="form-group">
+                                  <label class="col-md-4 control-label" for="username">Admin Name</label>  
+                                  <div class="col-md-4">
+                                  <input value="admin" id="username" name="username" placeholder="Name" class="form-control input-md" required="" type="text">
+
+                                  </div>
+                                </div>
+
+                                <!-- Password input-->
+                                <div class="form-group">
+                                  <label class="col-md-4 control-label" for="pass">Password</label>
+                                  <div class="col-md-4">
+                                    <input id="pass" name="pass" placeholder="password" class="form-control input-md" required="" type="password">
+
+                                  </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="form-group">
+                                <input name="status" value="1" type="hidden">
+                                  <label class="col-md-4 control-label" for="btn_admin_login"></label>
+                                  <div class="col-md-4">
+                                    <button id="btn_admin_login" name="btn_admin_login" class="btn btn-primary">Login</button>
+                                  </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="jumbotron">
+                    <div class="container">
+                        <form class="form-horizontal" action="Authentication">
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <legend class="text-center">Teacher Login</legend>
+
+                                <!-- Text input-->
+                                    <div class="form-group">
+                                  <label class="col-md-4 control-label" for="text_teacher_name">Teacher Name</label>  
+                                  <div class="col-md-4">
+                                  <input id="text_teacher_name" name="username" placeholder="Name" class="form-control input-md" required="" type="text">
+
+                                  </div>
+                                </div>
+
+                                <!-- Password input-->
+                                <div class="form-group">
+                                  <label class="col-md-4 control-label" for="pwd_teacher_pass">Password</label>
+                                  <div class="col-md-4">
+                                    <input id="pwd_teacher_pass" name="pass" placeholder="password" class="form-control input-md" required="" type="password">
+
+                                  </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="form-group">
+                                <input name="status" value="2" type="hidden">
+                                  <label class="col-md-4 control-label" for="btn_teacher_login"></label>
+                                  <div class="col-md-4">
+                                    <button id="btn_teacher_login" name="btn_teacher_login" class="btn btn-primary">Login</button>
+                                  </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+
+        
+
+    </div>
+      
+      
+      
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Admin%20Login_files/jquery-2.js"></script>
+    <script src="Admin%20Login_files/bootstrap.js"></script>
+
+
+  
+
+</body></html>
